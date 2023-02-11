@@ -1,11 +1,34 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'NextGen Harness Trigger Pipeline'
+description: 'Triggers a Harness pipeline and monitors execution until completion.'
+author: 'erikumhoefer'
 inputs:
-  milliseconds: # change this
+  harnessApiKey:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'NextGen Harness API Key'
+  pipelineIdentifier:
+    required: true
+    description: 'Identifier of the Harness pipeline to trigger'
+  accountIdentifier:
+    required: true
+    description: 'Harness account identifier'
+  orgIdentifier:
+    required: true
+    description: 'Harness organization identifier'
+  projectIdentifier:
+    required: true
+    description: 'Harness project identifier'
+  inputSetList:
+    required: false
+    description: 'Comma seperated list containing the IDs for the input sets to be merged and used for pipeline deployment'
+  stageIdentifiers:
+    required: false
+    description: 'Comma seperated list containing the stage IDs for the pipeline stages to execute'
+  triggerIdentifier:
+    required: false
+    description: 'Identifier for the custom webhook pipeline trigger'
+  triggerPayload:
+    required: false
+    description: 'JSON payload to be sent to the Harness trigger'
 runs:
   using: 'node16'
   main: 'dist/index.js'
